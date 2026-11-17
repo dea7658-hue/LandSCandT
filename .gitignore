@@ -6,3 +6,5 @@ node_modules/
 *백업*.json
 *backup*.json
 .DS_Store
+
+.vercel/
