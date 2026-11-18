@@ -1,0 +1,38 @@
+{
+  "name": "compass-together",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "check": "svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.server.json",
+    "preview": "vite preview --host 0.0.0.0",
+    "server": "wrangler dev",
+    "db:local": "wrangler d1 migrations apply compass --local",
+    "db:remote": "wrangler d1 migrations apply compass --remote",
+    "deploy": "npm run build && wrangler deploy",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "start": "node scripts/dev.mjs",
+    "doctor": "node scripts/doctor.mjs",
+    "doctor:deploy": "node scripts/doctor.mjs --deploy",
+    "predeploy": "npm run doctor:deploy && npm run check",
+    "test:integration": "node tests/integration.mjs"
+  },
+  "dependencies": {
+    "idb-keyval": "^6.2.1",
+    "papaparse": "^5.5.0",
+    "svelte": "^5.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261116.1",
+    "@sveltejs/vite-plugin-svelte": "^5.0.0",
+    "@types/papaparse": "^5.3.0",
+    "prettier": "^3.10.1",
+    "prettier-plugin-svelte": "^4.1.1",
+    "svelte-check": "^4.0.0",
+    "typescript": "^5.7.0",
+    "vite": "^6.0.0",
+    "wrangler": "^4.0.0"
+  }
+}
